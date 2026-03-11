@@ -23,8 +23,8 @@ class CombineStreamsConfig(BasePipelineConfig):
         "If only one stream is connected, the other half is black."
     )
 
-    stream_inputs: ClassVar[list[str]] = ["video", "video2"]
-    stream_outputs: ClassVar[list[str]] = ["video"]
+    inputs: ClassVar[list[str]] = ["video", "video2"]
+    outputs: ClassVar[list[str]] = ["video"]
 
     artifacts: ClassVar[list] = []
     supports_prompts: ClassVar[bool] = False
