@@ -1,4 +1,4 @@
-"""Pipeline that combines two video input frames into one output."""
+"""Pipeline that combines two video input frames into a split-screen output."""
 
 import logging
 
@@ -7,13 +7,13 @@ import torch.nn.functional as F
 
 from scope.core.pipelines.interface import Pipeline, Requirements
 
-from .schema import CombineStreamsConfig
+from .schema import SplitScreenConfig
 
 logger = logging.getLogger(__name__)
 
 
-class CombineStreamsPipeline(Pipeline):
-    """Combines two input video streams into a single output.
+class SplitScreenPipeline(Pipeline):
+    """Produces a split-screen output from two video streams.
 
     Takes one frame from the "video" stream (top half) and one from the
     "video2" stream (bottom half). If only one stream is provided, the
@@ -24,8 +24,8 @@ class CombineStreamsPipeline(Pipeline):
         pass
 
     @classmethod
-    def get_config_class(cls) -> type[CombineStreamsConfig]:
-        return CombineStreamsConfig
+    def get_config_class(cls) -> type[SplitScreenConfig]:
+        return SplitScreenConfig
 
     def prepare(self, **kwargs) -> Requirements:
         """Declare we need one frame from the primary video stream per call."""
@@ -52,13 +52,13 @@ class CombineStreamsPipeline(Pipeline):
         frames2 = kwargs.get("video2", []) or []
 
         logger.debug(
-            "combine_streams: video=%d frames, video2=%d frames",
+            "split_screen: video=%d frames, video2=%d frames",
             len(frames1),
             len(frames2),
         )
         if len(frames1) == 0 and len(frames2) > 0:
             logger.warning(
-                "combine_streams: 'video' input is empty (top will be black); "
+                "split_screen: 'video' input is empty (top will be black); "
                 "check that the upstream pipeline (e.g. yolo_mask) is connected to the 'video' port."
             )
 

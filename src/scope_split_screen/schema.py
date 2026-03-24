@@ -1,4 +1,4 @@
-"""Configuration schema for the combine streams pipeline."""
+"""Configuration schema for the split-screen pipeline."""
 
 from typing import ClassVar
 
@@ -12,13 +12,13 @@ from scope.core.pipelines.base_schema import (
 )
 
 
-class CombineStreamsConfig(BasePipelineConfig):
-    """Configuration for the combine streams pipeline."""
+class SplitScreenConfig(BasePipelineConfig):
+    """Configuration for the split-screen pipeline."""
 
-    pipeline_id: ClassVar[str] = "combine_streams"
-    pipeline_name: ClassVar[str] = "Combine Streams"
+    pipeline_id: ClassVar[str] = "split_screen"
+    pipeline_name: ClassVar[str] = "Split Screen"
     pipeline_description: ClassVar[str] = (
-        "Combines two video inputs into a single stream: one frame from "
+        "Produces a split-screen output from two video inputs: one frame from "
         "'video' (top half) and one from 'video2' (bottom half). "
         "If only one stream is connected, the other half is black."
     )
@@ -38,13 +38,13 @@ class CombineStreamsConfig(BasePipelineConfig):
     output_height: int = Field(
         default=512,
         ge=64,
-        description="Height of the combined output frame in pixels.",
+        description="Height of the split-screen output frame in pixels.",
         json_schema_extra=ui_field_config(order=1, label="Output Height"),
     )
 
     output_width: int = Field(
         default=512,
         ge=64,
-        description="Width of the combined output frame in pixels.",
+        description="Width of the split-screen output frame in pixels.",
         json_schema_extra=ui_field_config(order=2, label="Output Width"),
     )
