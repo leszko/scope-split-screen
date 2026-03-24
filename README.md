@@ -1,5 +1,7 @@
 # Split Screen Plugin for Daydream Scope
 
+![Split Screen plugin in Scope](screenshot.png)
+
 Produces a split-screen output from two video inputs:
 
 - **video**: one frame is used for the **top** half of the output.
