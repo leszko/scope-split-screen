@@ -15,7 +15,7 @@ from scope.core.pipelines.base_schema import (
 class SplitScreenConfig(BasePipelineConfig):
     """Configuration for the split-screen pipeline."""
 
-    pipeline_id: ClassVar[str] = "split_screen"
+    pipeline_id: ClassVar[str] = "split-screen"
     pipeline_name: ClassVar[str] = "Split Screen"
     pipeline_description: ClassVar[str] = (
         "Produces a split-screen output from two video inputs: one frame from "
